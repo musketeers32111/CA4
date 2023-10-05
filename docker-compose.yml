@@ -3,7 +3,7 @@ services:
   web:
     image: musketeers32111/ca4:web
     volumes:
-      - db-data:/var/lib/postgresql/data  # Mount the volume to the database data directory inside the container
+       - ./web:/app  # Mount the web server code
     environment:
       - DATABASE_HOST=database  # Use the service name as the host name for database communication
       - DATABASE_PORT=5432  # PostgreSQL's default port

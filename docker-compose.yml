@@ -22,5 +22,5 @@ services:
       - postgres-data:/var/lib/postgresql/data  # Persist PostgreSQL data
 
 volumes:
-  db-data:  # Defined a named volume for database data persistence for the web service
+  
   postgres-data:  # Defined a named volume for PostgreSQL data persistence for the database service

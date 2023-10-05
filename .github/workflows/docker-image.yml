@@ -1,0 +1,34 @@
+name: Publish Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and publish database image
+      run: |
+        docker build -t musketeers32111/mydb-postgres:latest -f ./Dockerfile-database .
+        docker push musketeers32111/mydb-postgres:latest
+      
+    - name: Build and publish web server image
+      run: |
+        docker build -t musketeers32111/ca4:web -f ./Dockerfile-web .
+        docker push musketeers32111/ca4:web
+      

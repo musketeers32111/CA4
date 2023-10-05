@@ -1,7 +1,6 @@
-FROM python:3.9
-EXPOSE 5000
+FROM python:3.11.4
 WORKDIR /app
-COPY requirements.txt /app
-RUN pip install -r requirements.txt
-COPY app.py /app
-CMD python app.py
+COPY . /app
+EXPOSE 80
+ENV NAME World
+CMD ["python", "app.py"]
